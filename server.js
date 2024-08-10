@@ -1,4 +1,5 @@
 // server.js
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const http = require('http');
@@ -9,8 +10,10 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+console.log(process.env.REDIS_HOST, process.env.REDIS_PASSWORD, process.env.REDISPORT);
+
 const redisClient = redis.createClient({
-    url: process.env.REDIS_PUBLIC_URL
+    url: process.env.REDIS_URL,
 });
 redisClient.connect();
 
