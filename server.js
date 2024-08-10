@@ -10,9 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 const redisClient = redis.createClient({
-    host: process.env.REDIS_PUBLIC_URL,
-    password: process.env.REDIS_PASSWORD,
-    port: process.env.REDISPORT,
+    url: process.env.REDIS_PUBLIC_URL
 });
 redisClient.connect();
 
