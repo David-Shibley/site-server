@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-console.log(process.env.REDIS_URL, process.env.REDIS_PASSWORD, process.env.REDISPORT);
+console.log('Process env', process.env);
 
 const redisClient = redis.createClient({
     url: process.env.REDIS_URL,
