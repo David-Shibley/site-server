@@ -10,8 +10,6 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-console.log('Process env', process.env);
-
 const redisClient = redis.createClient({
     url: process.env.REDIS_URL,
 });
@@ -31,6 +29,9 @@ const io = socketIo(server, {
 io.on('connection', (socket) => {
     console.log('a user connected');
 
+    socket.on('setDice', async (room, dice) => {
+        io.to(room).emit('setDice', dice);
+    });
     socket.on('updateDiceOwner', async (room, player) => {
         io.to(room).emit('updateDiceOwner', player);
     });
