@@ -29,6 +29,9 @@ const io = socketIo(server, {
 io.on('connection', (socket) => {
     console.log('a user connected');
 
+    socket.on('gameOver', async (room, players) => {
+        io.to(room).emit('gameOver', players);
+    });
     socket.on('setDice', async (room, dice) => {
         io.to(room).emit('setDice', dice);
     });
