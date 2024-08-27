@@ -52,6 +52,18 @@ io.on('connection', (socket) => {
         io.to(room).emit('nextTurn', players);
     });
 
+    socket.on('assassinate', async (room, player) => {
+        io.to(room).emit('assassinate', player);
+    });
+
+    socket.on('coup', async (room, player) => {
+        io.to(room).emit('coup', player);
+    });
+
+    socket.on('challenge', async (room) => {
+        io.to(room).emit('challenge');
+    });
+
     socket.on('joinRoom', async (room, player) => {
         socket.join(room);
         let roomData = await redisClient.get(room);
