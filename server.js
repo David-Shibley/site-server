@@ -48,6 +48,10 @@ io.on('connection', (socket) => {
         io.to(room).emit('startGame', dice);
     });
 
+    socket.on('nextTurn', async (room, players) => {
+        io.to(room).emit('nextTurn', players);
+    });
+
     socket.on('joinRoom', async (room, player) => {
         socket.join(room);
         let roomData = await redisClient.get(room);
